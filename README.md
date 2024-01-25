@@ -51,6 +51,7 @@ npm run json
 ![fetch data](public/image-1.png)
 ![json server](public/image-2.png)
 ![DU](public/image-3.png)
+![update](public/image4.png)
 
 ## Live Demo
 [Demo](https://react-redux-crud-1.herokuapp.com/)
