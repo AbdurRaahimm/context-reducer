@@ -6,25 +6,25 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CreatePost() {
     const dispatch = useDispatch();
-const navigate = useNavigate();
-const addPosts = async(e) => {
-    e.preventDefault();
-    const title = e.target.title.value;
-    const desc = e.target.desc.value; 
-    // const image = e.target.image.files[0];
-    // const reader = new FileReader();
-    // reader.readAsDataURL(image);
-    // reader.onload = () => {};
-    const post = {
-        id: Date.now(),
-        title,
-        desc,
-        // image: reader.result,
-    }
-    dispatch(addApiPost(post))
-    navigate('/api')
+    const navigate = useNavigate();
+    const addPosts = async (e) => {
+        e.preventDefault();
+        const title = e.target.title.value;
+        const desc = e.target.desc.value;
+        // const image = e.target.image.files[0];
+        // const reader = new FileReader();
+        // reader.readAsDataURL(image);
+        // reader.onload = () => {};
+        const post = {
+            id: Date.now().toString(),
+            title,
+            desc,
+            // image: reader.result,
+        }
+        dispatch(addApiPost(post))
+        navigate('/api')
 
-};
+    };
     return (
         <Layout>
             <div className="container py-4">
