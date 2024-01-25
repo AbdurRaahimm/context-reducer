@@ -53,7 +53,7 @@ npm run json
 ![DU](public/image-3.png)
 
 ## Live Demo
-[Demo](https://react-redux-crud-1.herokuapp.com/)
+[Demo](https://react-redux-delta-nine.vercel.app/)
 
 
 
