@@ -26,7 +26,7 @@ This project requires [Node.js](https://nodejs.org/) v4+ to run.
 Clone the project from git repository
 
 ```sh
-git clone 
+git clone https://github.com/AbdurRaahimm/context-reducer.git
 ```
 
 Install the dependencies and devDependencies and start the server.
@@ -53,7 +53,7 @@ npm run json
 ![update](public/image4.png)
 
 ## Live Demo
-[Demo]()
+[Demo](https://context-reducer-eta.vercel.app/)
 
 
 
