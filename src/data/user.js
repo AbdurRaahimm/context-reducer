@@ -16,5 +16,5 @@ export const userList = [
         name: "Clementine Bauch",
         email: "Bauch@mail.com",
         age: 30,
-    },
+    }
 ]

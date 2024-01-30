@@ -1,30 +1,38 @@
 import React from 'react';
 import Layout from '@/components/Layout';
-import { useDispatch } from 'react-redux';
-import { addApiPost } from '@/redux/apipostsSlice';
+import { useApiReq } from '../store/ApiReqProvider';
 import { useNavigate } from 'react-router-dom';
 
 export default function CreatePost() {
-    const dispatch = useDispatch();
+    const { dispatch } = useApiReq();
     const navigate = useNavigate();
+
     const addPosts = async (e) => {
         e.preventDefault();
         const title = e.target.title.value;
         const desc = e.target.desc.value;
-        // const image = e.target.image.files[0];
-        // const reader = new FileReader();
-        // reader.readAsDataURL(image);
-        // reader.onload = () => {};
         const post = {
             id: Date.now().toString(),
             title,
             desc,
-            // image: reader.result,
         }
-        dispatch(addApiPost(post))
+        const response = await fetch('http://localhost:5000/posts', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(post)
+        });
+        const data = await response.json();
+        dispatch({ type: 'CREATE_POST', payload: data });
         navigate('/api')
 
-    };
+        // createPost(post).then(data => {
+        //     dispatch({ type: 'CREATE_POST', payload: data });
+        //     navigate('/api')
+        // })
+
+    }
     return (
         <Layout>
             <div className="container py-4">

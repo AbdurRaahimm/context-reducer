@@ -1,26 +1,25 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { updateUser } from '@/redux/userListSlice';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useArrCRUD } from '../store/ArrCRUDProvider';
+
 
 export default function Update() {
-  const { id } = useParams();
-  const { userList } = useSelector(state => state.user)
-  const user = userList.find(user => user.id == id)
-  // console.log(user)
-  const dispatch = useDispatch()
-  const navigate = useNavigate();
+  const locate = useLocation();
+  const { name, email, age } = locate.state;
+  const { dispatch } = useArrCRUD();
+  const navigate  = useNavigate();
+  // console.log(locate.state);
   const updateHandler = (e) => {
     e.preventDefault();
-    // console.log(user.id)
-    const id = user.id
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const age = e.target.age.value;
-    const data = { id, name, email, age }
-    dispatch(updateUser(data))
-    navigate('/')
-
+    const { name, email, age } = e.target;
+    const newItem = {
+      id: locate.state.id,
+      name: name.value,
+      email: email.value,
+      age: age.value
+    }
+    dispatch({ type: 'UPDATE', payload: newItem })
+    navigate('/');
   }
   return (
     <div className="d-flex justify-content-center align-items-center bg-primary " style={{ height: `100vh` }}>
@@ -29,15 +28,15 @@ export default function Update() {
         <form onSubmit={updateHandler} >
           <div className="mb-3">
             <label htmlFor="name" className="form-label">Name</label>
-            <input type="text" className="form-control" id="name" defaultValue={user.name} name="name" required />
+            <input type="text" className="form-control" id="name" defaultValue={name} name="name" required />
           </div>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">Email address</label>
-            <input type="email" className="form-control" id="email" defaultValue={user.email} name="email" required />
+            <input type="email" className="form-control" id="email" defaultValue={email} name="email" required />
           </div>
           <div className="mb-3">
             <label htmlFor="age" className="form-label">Age</label>
-            <input type="number" className="form-control" id="age" defaultValue={user.age} name="age" required />
+            <input type="number" className="form-control" id="age" defaultValue={age} name="age" required />
           </div>
           <button type="submit" className="btn btn-primary">Update</button>
         </form>

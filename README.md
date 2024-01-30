@@ -1,19 +1,18 @@
-# React redux CRUD and Data fetch application 
+# Context Reducer 
 
-This is a simple react redux application with CRUD operations and data fetch from an json server API. 
+This is a simple react Context API and useReducer application with CRUD operations and data fetch from an json server API.
 
 ## Features 
 
-- React redux CRUD operations with object array
+- React Context API and useReducer CRUD operations with object array
 - Data fetch from json server API
-- React redux CRUD operations with json server API
+- React Context API and useReducer CRUD operations with json server API
 
 ## Tools
 
 - Vite React
-- React Redux
+- React Context API and useReducer
 - React Router Dom
-- Redux Thunk
 - fetch API
 - Json Server
 - Bootstrap
@@ -27,7 +26,7 @@ This project requires [Node.js](https://nodejs.org/) v4+ to run.
 Clone the project from git repository
 
 ```sh
-git clone https://github.com/AbdurRaahimm/React-Redux.git
+git clone 
 ```
 
 Install the dependencies and devDependencies and start the server.
@@ -54,7 +53,7 @@ npm run json
 ![update](public/image4.png)
 
 ## Live Demo
-[Demo](https://react-redux-delta-nine.vercel.app/)
+[Demo]()
 
 
 

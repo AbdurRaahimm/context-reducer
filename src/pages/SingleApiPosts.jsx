@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '@/components/Layout';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteApiPost } from '../redux/apipostsSlice';
 import timeAgo from '../utilis/timeAgo';
+import { useApiReq } from '../store/ApiReqProvider';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 export default function SingleApiPosts() {
-    const { id } = useParams();
-    const loading = useSelector(state => state.apiPosts.loading);
-    const Error = useSelector(state => state.apiPosts.error);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const { state, dispatch } = useApiReq();
+    const { loading, error } = state;
     const locate = useLocation();
-    // console.log(locate.state)
+    // console.log(locate.state);
+    const navigate = useNavigate();
 
+    const deleteApiPost = async (id) => {
+        const response = await fetch(`http://localhost:5000/posts/${id}`, {
+            method: "DELETE",
+        });
+        return await response.json();
+    }
     const deletePost = async (id) => {
         if (confirm('Are you sure?')) {
-            dispatch(deleteApiPost(id))
+            const data = await deleteApiPost(id);
+            dispatch({ type: 'DELETE_POST', payload: data });
             navigate('/api')
         } else {
             return;
         }
-
     }
     return (
         <Layout>
@@ -31,8 +34,8 @@ export default function SingleApiPosts() {
                 {
                     loading ? (
                         <p>Loading...</p>
-                    ) : Error ? (
-                        <p>{Error}</p>
+                    ) : error ? (
+                        <p>{error}</p>
                     ) : (
                         <div className='' >
                             <div key={locate.state.id} >

@@ -1,31 +1,19 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { addUser } from '@/redux/userListSlice';
+import { useArrCRUD } from '../store/ArrCRUDProvider';
 
 export default function Modal({ targetId }) {
-    const users = useSelector(state => state.user)
-    console.log(users)
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-
-    const handleAddUser = async (e) => {
+    const { dispatch } = useArrCRUD();
+    // const navigate = useNavigate();
+    const handleAddUser = (e) => {
         e.preventDefault();
-
-        const name = e.target.name.value;
-        const email = e.target.email.value;
-        const age = e.target.age.value;
-        const data = {
-            id: users.userList[users.userList.length - 1].id + 1,
-            name,
-            email,
-            age
+        const { name, email, age } = e.target;
+        const newItem = {
+            id: Date.now(),
+            name: name.value,
+            email: email.value,
+            age: age.value
         }
-        await dispatch(addUser(data))
-        navigate('/')
-
-
+        dispatch({ type: 'ADD', payload: newItem })
     }
     return (
         <>

@@ -8,7 +8,7 @@ export default function SinglePosts() {
   return (
     <Layout>
       {/* <h1>SinglePosts</h1> */}
-      <div className='p-2' >
+      <div className='p-4' >
         <h3>{locate.state.title}</h3>
         <p>{locate.state.body}</p>
       </div>
